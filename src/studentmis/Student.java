@@ -4,13 +4,12 @@ import java.util.Scanner;
 
 public class Student {
 
-    private String firstname;
-    private String lastname;
-    private int gradeYear;
+    private final String lastname;
+    private final String firstname;
+    private final int gradeYear;
     private String studentID;
-    private String courses;
+    private String courses = "";
     private int tuitionBalance = 0;
-    private static int costOfCourse = 600;
     private static int id = 1000;
 
 
@@ -21,10 +20,10 @@ public class Student {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Enter First Name: ");
-        this.firstname = in.nextLine();
+        firstname = in.nextLine();
 
         System.out.println("Enter Last Name: ");
-        this.lastname = in.nextLine();
+        lastname = in.nextLine();
 
         System.out.println("1 - Sophomore\n 2 - Freshman\n 3 - Junior\n 4 - Senior\n Enter grade level: ");
         this.gradeYear = in.nextInt();
@@ -43,19 +42,22 @@ public class Student {
     //Enroll in courses
     public void EnrollStudent(){
         //Get inside a loop, user hits 0
+        System.out.println("Enter courses (Press Q to exit))");
         do {
-            System.out.print("Enter courses: ");
+            System.out.print("Course: ");
             Scanner in = new Scanner(System.in);
             String course = in.nextLine();
 
             if (!course.equals("Q")) {
-                this.courses = courses + "\n" + course;
+                this.courses = courses + " " + course;
+                int costOfCourse = 600;
                 this.tuitionBalance += costOfCourse;
             } else {
                 break;
             }
-        } while (1 != 0);
+        } while (true);
 
+        System.out.println("Names: " + firstname + " " + lastname + "\n" + "Grade: " + gradeYear + "\n" + "Student Id: " + studentID);
         System.out.println("Enrolled in: " + courses);
         System.out.println("Tuition Balance: " + tuitionBalance);
     }
